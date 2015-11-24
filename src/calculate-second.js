@@ -1,22 +1,16 @@
 function calculate_median(arr) {
-  var middleArr = get_median(arr);
-  var middle = (middleArr.length-1) / 2;
-  middleArr.sort();
-  return get_middle(middleArr);
+  arr.getSubArray(2).getMedian();
 }
 
-function get_median(arr) {
-  var medianList = [], temp = 0;
-  for (var i = 1; i < arr.length; i += 2) {
-    medianList[temp++] = arr[i];
-  }
-  return medianList;
-}
-
-function get_middle(middleArr) {
-  if (middleArr.length%2 == 0) {
-    return (middleArr[middleArr.length/2-1] + middleArr[middleArr.length/2+1])/2;
+Array.prototype.getMedian = function() {
+  this.sort();
+  if (this.length%2 != 0) {
+    return this[(this.length-1)/2];
   } else {
-    return middleArr[(middleArr.length+1)/2];
+    return average(this[this.length/2-1], this[this.length/2]);
   }
+}
+
+function average(num1, num2) {
+  return parseInt((num1 + num2) / 2);
 }
